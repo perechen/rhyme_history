@@ -61,14 +61,16 @@ rhyme_summarised %>%
         plot.title = element_text(size=20,face = "bold"),
         plot.subtitle = element_text(size=12),
         legend.text = element_text(size=12),
-        strip.text.x = element_text(size = 14,face="bold")) +
+        strip.text.x = element_text(size = 14,face="bold"),
+        plot.caption = element_text(size=10)) +
   ## titles etc.
   labs(x="Время", y="% неточных рифм относительно типа рифмы",
        title="История неточной рифмы в русской поэзии (1720-1970)",
-       subtitle="Данные из: Гаспаров М.Л. Эволюция русской рифмы // Проблемы теории стиха. Л., 1984.\n\nЛинии показывают изменение среднего (по десятилетиям) состава рифменных форм.\nПрозрачные точки соответстуют реальным подсчетам Гаспарова по поэтам/текстам") +
+       subtitle="Данные из: Гаспаров М.Л. Эволюция русской рифмы // Проблемы теории стиха. Л., 1984.\n\nЛинии показывают изменение среднего (по десятилетиям) состава рифменных форм.\nПрозрачные точки соответстуют реальным подсчетам Гаспарова по поэтам/текстам",
+       caption = paste(Sys.Date(), "@artjomshl")) +
   scale_x_continuous(breaks = seq(1720, 1970, by = 10)) +
   # color & legend
-  scale_color_paletteer_d("ggsci::uniform_startrek", name="",labels=c("Ж приблизительная", "Ж йотированная", "Ж неточная", "М закрытая неточная", "М открытая неточная", "М открытая+закрытая")) +
+  scale_color_paletteer_d("ggsci::uniform_startrek", name="",labels=c("Ж приблизительная", "Ж йотированная", "Ж неточная", "М закрытая неточная", "М открытая+закрытая", "М открытая неточная")) +
   # draw crysis highlights
   geom_rect(data=rect, aes(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax),
           fill=paletteer_d("wesanderson::Royal1")[1],
